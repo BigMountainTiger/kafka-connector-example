@@ -1,0 +1,11 @@
+#!/bin/bash
+
+git reset --soft HEAD~
+git add-commit -m "Updated the kafka-connector-example"
+git push -f
+
+echo
+echo "Wait for a second ..."
+sleep 1
+
+git log -2
