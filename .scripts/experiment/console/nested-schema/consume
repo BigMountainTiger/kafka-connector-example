@@ -1,0 +1,10 @@
+#!/bin/bash
+
+SCRIPT_PATH="$(dirname -- "${BASH_SOURCE[0]}")"
+. $SCRIPT_PATH/common
+
+kafka-avro-console-consumer \
+    --bootstrap-server $BROKER \
+    --property schema.registry.url=$SCHEMA_REGISTRY \
+    --from-beginning \
+    --topic $TOPIC

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export BROKER="localhost:9093"
+export SCHEMA_REGISTRY="http://localhost:8081"
+export TOPIC="nested-schema-example"

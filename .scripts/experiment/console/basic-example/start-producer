@@ -1,0 +1,21 @@
+#!/bin/bash
+
+BROKER="localhost:9093"
+SCHEMA_REGISTRY="http://localhost:8081"
+
+TOPIC="basic-example"
+
+SCHEMA='{"type":"record","name":"myrecord","fields":[{"name":"f1","type":"string"}]}'
+
+# https://datacadamia.com/dit/kafka/kafka-avro-console-producer
+
+# {"f1": "value1"}
+# {"f1": "value2"}
+# {"f1": "value3"}
+
+# It is OK to start the producer if the topic already exists
+kafka-avro-console-producer \
+    --bootstrap-server $BROKER \
+    --topic $TOPIC \
+    --property schema.registry.url=$SCHEMA_REGISTRY \
+    --property value.schema=$SCHEMA

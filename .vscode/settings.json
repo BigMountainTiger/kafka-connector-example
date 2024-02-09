@@ -1,0 +1,7 @@
+{
+    "files.exclude": {
+        "**/docker/plugins": true,
+        "**/*/target": true
+    },
+    "java.configuration.updateBuildConfiguration": "automatic"
+}

@@ -1,0 +1,1 @@
+{"data":{"A":{"string":"000000000003"},"B":{"string":"OK"},"TEST_DATA":null},"headers":{"operation":"DELETE","timestamp":"2023-12-04T14:21:14.000"}}

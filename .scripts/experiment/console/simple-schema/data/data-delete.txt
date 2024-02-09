@@ -1,0 +1,2 @@
+{"id": "1", "data": "Updated", "operation": "DELETE"}
+{"id": "2", "data": "Updated", "operation": "DELETE"}

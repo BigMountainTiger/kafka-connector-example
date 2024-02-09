@@ -1,0 +1,28 @@
+#!/bin/bash
+# https://datacadamia.com/dit/kafka/kafka-avro-console-producer
+
+SCRIPT_PATH="$(dirname -- "${BASH_SOURCE[0]}")"
+. $SCRIPT_PATH/common
+
+ACTION=$1
+declare -a ACTIONS=("insert" "update" "delete")
+
+
+if ! [[ " ${ACTIONS[*]} " =~ " ${ACTION} " ]]; then
+    echo "Only the following operations are allowed"
+    echo "produce insert"
+    echo "produce update"
+    echo "produce delete"
+    exit 1
+fi
+
+
+SCHEMA=$(cat $SCRIPT_PATH/schema/schema.json)
+
+# It is OK to start the producer if the topic already exists
+cat $SCRIPT_PATH/data/data-$ACTION.txt | grep -v "^$" | \
+    kafka-avro-console-producer \
+    --bootstrap-server $BROKER \
+    --topic $TOPIC \
+    --property schema.registry.url=$SCHEMA_REGISTRY \
+    --property value.schema="$SCHEMA"

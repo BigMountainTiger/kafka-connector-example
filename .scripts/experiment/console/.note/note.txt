@@ -1,0 +1,30 @@
+https://github.com/confluentinc/demo-scene/blob/master/twitter-streams/docker-compose.yml
+
+dockerhub confluent
+https://hub.docker.com/u/confluentinc
+
+Debezium
+https://debezium.io/documentation/reference/stable/index.html
+https://debezium.io/documentation/reference/stable/install.html - Download
+
+After docker compose up web page is accessible
+control center - http://localhost:9021
+
+Download confluent command tools, which includes common confluent and kafka CLI tools
+https://docs.confluent.io/platform/current/installation/overview.html
+https://docs.confluent.io/platform/current/installation/installing_cp/zip-tar.html#prod-kafka-cli-install
+https://packages.confluent.io/archive/
+
+Kafka topic CLI reference
+https://www.conduktor.io/kafka/kafka-topics-cli-tutorial/
+
+How to use kafka-avro-console-producer / consumer reference
+https://datacadamia.com/dit/kafka/kafka-avro-console-producer
+
+
+confluentinc/cp-kafka-connect Example
+https://github.com/saubury/kafka-connect-oracle-cdc
+
+Download the jdbc conector and mount to the docker container
+https://www.confluent.io/hub/confluentinc/kafka-connect-jdbc
+

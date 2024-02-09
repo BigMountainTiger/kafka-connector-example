@@ -1,0 +1,6 @@
+Download Debezium connectors
+https://debezium.io/documentation/reference/stable/index.html
+https://debezium.io/documentation/reference/stable/connectors/index.html
+https://debezium.io/documentation/reference/stable/install.html
+
+Map the download to the volume in docker-compose.yml to connect-confluentinc

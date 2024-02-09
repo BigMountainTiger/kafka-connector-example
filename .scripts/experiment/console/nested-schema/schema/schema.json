@@ -1,0 +1,65 @@
+{
+    "fields": [
+        {
+            "name": "data",
+            "type": {
+                "fields": [
+                    {
+                        "default": null,
+                        "name": "A",
+                        "type": [
+                            "null",
+                            "string"
+                        ]
+                    },
+                    {
+                        "default": null,
+                        "name": "B",
+                        "type": [
+                            "null",
+                            "string"
+                        ]
+                    },
+                    {
+                        "default": null,
+                        "name": "TEST_DATA",
+                        "type": [
+                            "null",
+                            "string"
+                        ]
+                    }
+                ],
+                "name": "data",
+                "type": "record"
+            }
+        },
+        {
+            "name": "headers",
+            "type": {
+                "fields": [
+                    {
+                        "name": "operation",
+                        "type": {
+                            "name": "operation",
+                            "symbols": [
+                                "INSERT",
+                                "UPDATE",
+                                "DELETE",
+                                "REFRESH"
+                            ],
+                            "type": "enum"
+                        }
+                    },
+                    {
+                        "name": "timestamp",
+                        "type": "string"
+                    }
+                ],
+                "name": "headers",
+                "type": "record"
+            }
+        }
+    ],
+    "name": "DataRecord",
+    "type": "record"
+}
