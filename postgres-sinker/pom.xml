@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.song.example</groupId>
-	<artifactId>basic-sinker</artifactId>
+	<artifactId>postgres-sinker</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
-	<name>Basic Sinker</name>
+	<name>Postgres Sinker</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -2,7 +2,7 @@ package com.song.example;
 
 import org.junit.Test;
 
-public class BasicSinkerTest {
+public class PostgresSinkerTest {
 
 	@Test
 	public void Test() throws Exception {
