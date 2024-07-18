@@ -1,0 +1,17 @@
+#!/bin/bash
+
+SCRIPT_PATH="$(dirname -- "${BASH_SOURCE[0]}")"
+cd $SCRIPT_PATH/../../../../
+
+# Calling the script in the java project directory
+./basic-sinker/.scripts/package
+
+CONTAINER="connect-confluentinc"
+CONTAINER_EXISTS=$(docker container ls -a | grep $CONTAINER)
+
+if [ -n "$CONTAINER_EXISTS" ]
+then
+    echo "Restarting the container"
+    .scripts/docker/docker-compose r $CONTAINER
+fi
+

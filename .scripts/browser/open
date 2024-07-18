@@ -1,0 +1,6 @@
+#!/bin/bash
+
+URL="http://localhost:9021"
+
+echo "Openning $URL" 
+google-chrome $URL

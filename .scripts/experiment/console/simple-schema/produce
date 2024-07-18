@@ -25,4 +25,4 @@ cat $SCRIPT_PATH/data/data-$ACTION.txt | grep -v "^$" | \
     --bootstrap-server $BROKER \
     --topic $TOPIC \
     --property schema.registry.url=$SCHEMA_REGISTRY \
-    --property value.schema="$SCHEMA"
+    --property value.schema="$SCHEMA" 1>/dev/null

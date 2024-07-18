@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   zookeeper:
     image: confluentinc/cp-zookeeper:7.4.3
@@ -49,6 +47,8 @@ services:
       CONNECT_CONFLUENT_TOPIC_REPLICATION_FACTOR: 1
     volumes:
       - ./plugins/debezium-connector-postgres:/usr/share/java/debezium-connector-postgres
+      - /home/song/Sandbox/kafka-connector-example/basic-sinker/target/basic-sinker-1.0.0.jar:/usr/share/java/development/basic-sinker-1.0.0.jar
+      - /home/song/Sandbox/kafka-connector-example/postgres-sinker/target/postgres-sinker-1.0.0.jar:/usr/share/java/development/postgres-sinker-1.0.0.jar
 
   schema-registry:
     image: confluentinc/cp-schema-registry:7.4.3
