@@ -1,0 +1,81 @@
+#!/bin/bash
+
+PORT=8083
+CONNECTOR_NAME="basic-sink-connector"
+BASE_URL="localhost:$PORT/connectors"
+
+SCRIPT_PATH="$(dirname -- "${BASH_SOURCE[0]}")"
+FULL_CONFIG_PATH=""
+PART_CONFIG_PATH="$SCRIPT_PATH/config/config.json"
+
+red() {
+    echo '\033[1;31m'$1'\033[0m'
+}
+
+WHAT=$1
+case "$WHAT" in
+    add|a) 
+        echo "Add is not implemented here"
+        ;;
+    update|u)
+        curl -i -X PUT \
+            -H "Accept:application/json" \
+            -H "Content-Type:application/json" \
+            --data "@$PART_CONFIG_PATH" \
+            $BASE_URL/$CONNECTOR_NAME/config 
+
+        echo -e "\n\n"
+        ;;
+    status|s)
+        curl -s -X GET \
+            -H "Accept:application/json" \
+            -H 'Content-Type: application/json' \
+            $BASE_URL/$CONNECTOR_NAME/status | jq
+
+        echo
+        ;;
+    pause|p)
+        curl -i -X PUT \
+            -H "Accept:application/json" \
+            -H "Content-Type:application/json" \
+            $BASE_URL/$CONNECTOR_NAME/pause 
+
+        echo
+        ;;
+    resume|r)
+        curl -i -X PUT \
+            -H "Accept:application/json" \
+            -H "Content-Type:application/json" \
+            $BASE_URL/$CONNECTOR_NAME/resume 
+
+        echo
+        ;;
+    re|restart)
+        curl -i -X POST \
+            -H "Accept:application/json" \
+            -H "Content-Type:application/json" \
+            "$BASE_URL/$CONNECTOR_NAME/restart?includeTasks=true&onlyFailed=true"
+
+        echo
+        ;;
+    delete|d)
+        curl -i -X DELETE \
+            -H "Accept:application/json" \
+            -H "Content-Type:application/json" \
+            $BASE_URL/$CONNECTOR_NAME
+        echo
+        ;;
+    *)
+        echo -e "Only the following 6 operations are supported:\n"
+        echo -e "1. konnect $(red a)|add"
+        echo -e "2. konnect $(red u)|update"
+        echo -e "3. konnect $(red s)|status"
+        echo -e "4. konnect $(red p)|pause"
+        echo -e "5. konnect $(red r)|resume"
+        echo -e "6. konnect $(red re)|restart"
+        echo -e "7. konnect $(red d)|delete"
+        echo
+        exit 1
+        ;;
+esac
+

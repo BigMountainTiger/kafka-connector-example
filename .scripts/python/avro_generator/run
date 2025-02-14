@@ -1,0 +1,7 @@
+#!/bin/bash
+
+SCRIPT_PATH="$(dirname -- "${BASH_SOURCE[0]}")"
+export MODEL_FILE="$SCRIPT_PATH/models/model.json"
+export SCHEMA_FILE="$SCRIPT_PATH/models/schema.avsc"
+
+python "$SCRIPT_PATH/generate.py"

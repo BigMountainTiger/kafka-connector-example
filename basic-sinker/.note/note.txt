@@ -1,0 +1,11 @@
+JDBC Postgres Example
+https://mkyong.com/jdbc/how-do-connect-to-postgresql-with-jdbc-driver-java/
+
+Class.forName("org.postgresql.Driver");
+https://www.tutorialspoint.com/postgresql/postgresql_java.htm
+
+PreparedStatement
+https://jenkov.com/tutorials/jdbc/preparedstatement.html
+
+A task is a thread that performs the actual sourcing or sinking of data
+https://stackoverflow.com/questions/67265075/what-is-the-relationship-between-connectors-and-tasks-in-kafka-connect

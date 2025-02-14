@@ -1,0 +1,6 @@
+Connector:
+- config()
+- version()
+- start()
+- taskClass()
+- taskConfigs()

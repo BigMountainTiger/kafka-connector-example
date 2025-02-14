@@ -1,0 +1,12 @@
+1. Need to make the JAR file available to CONNECT_PLUGIN_PATH, see the docker-compose.yml file
+2. A Sink connector has SinkConnector and SinkTask JAVA classes, each connector can have multiple tasks
+    - https://docs.imply.io/polaris/kafka-connect-reference/
+    - Each task is assigned to a thread. Each task is capable of handling multiple Kafka partitions, but a single partition must be handled by only one task
+    - configuration - "tasks.max"
+    
+3. The configurations will be passed into the task in the start() method
+4. It is possible to control the max message poll from the topic by "consumer.override.max.poll.records": default 500
+5. Exceptions in put() and flush() method will prevent the topic offsets committed
+6. If "RetriableException" thrown in put(), the task will keep retrying with the same input until the problem is fixed, but the task will not stop
+7. For database the data can be persisted in batch in the put() method
+8. It is OK to leave the flush() empty, if the put() persists all the data

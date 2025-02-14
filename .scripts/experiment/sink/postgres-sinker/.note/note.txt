@@ -1,0 +1,4 @@
+https://docs.confluent.io/platform/current/connect/logging.html
+
+Check the log --
+docker logs -f connect-confluentinc | grep SimpleLogger

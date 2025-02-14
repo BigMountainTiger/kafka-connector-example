@@ -1,0 +1,14 @@
+{
+    "type": "record",
+    "name": "Key",
+    "namespace": "com.song.example.key",
+    "fields": [
+        {
+            "name": "id",
+            "type": {
+                "type": "long",
+                "logicalType": "timestamp-millis"
+            }
+        }
+    ]
+}

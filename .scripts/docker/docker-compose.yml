@@ -1,13 +1,11 @@
-version: "3.8"
-
 services:
   zookeeper:
-    image: confluentinc/cp-zookeeper:7.4.3
+    image: confluentinc/cp-zookeeper:${CONFLUENTINC_TAG}
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
 
   kafka:
-    image: confluentinc/cp-enterprise-kafka:7.4.3
+    image: confluentinc/cp-enterprise-kafka:${CONFLUENTINC_TAG}
     depends_on: [zookeeper]
     environment:
       KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
@@ -22,7 +20,7 @@ services:
 
   connect-confluentinc:
     container_name: connect-confluentinc
-    image: confluentinc/cp-kafka-connect:7.4.3
+    image: confluentinc/cp-kafka-connect:${CONFLUENTINC_TAG}
     depends_on: [zookeeper, kafka, schema-registry]
     ports:
       - "8083:8083"
@@ -49,9 +47,11 @@ services:
       CONNECT_CONFLUENT_TOPIC_REPLICATION_FACTOR: 1
     volumes:
       - ./plugins/debezium-connector-postgres:/usr/share/java/debezium-connector-postgres
+      - /home/song/Sandbox/kafka-connector-example/basic-sinker/target/basic-sinker-1.0.0.jar:/usr/share/java/development/basic-sinker-1.0.0.jar
+      - /home/song/Sandbox/kafka-connector-example/postgres-sinker/target/postgres-sinker-1.0.0.jar:/usr/share/java/development/postgres-sinker-1.0.0.jar
 
   schema-registry:
-    image: confluentinc/cp-schema-registry:7.4.3
+    image: confluentinc/cp-schema-registry:${CONFLUENTINC_TAG}
     environment:
       # We may not need zookeeper, it is used to lookup for the bootstrap servers
       # - SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL=zookeeper:2181
@@ -63,7 +63,7 @@ services:
     depends_on: [zookeeper, kafka]
 
   control-center:
-    image: confluentinc/cp-enterprise-control-center:7.4.3
+    image: confluentinc/cp-enterprise-control-center:${CONFLUENTINC_TAG}
     container_name: control-center
     restart: always
     depends_on: [zookeeper, kafka, schema-registry]

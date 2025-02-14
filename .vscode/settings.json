@@ -1,7 +1,13 @@
 {
     "files.exclude": {
         "**/docker/plugins": true,
-        "**/*/target": true
+        "**/*/target": true,
+        "**/.env-3*": true,
+        "**/__pycache__": true
+    },
+    "files.associations": {
+        "*.avsc": "json",
+        "docker-compose.yml": "yaml"
     },
     "java.configuration.updateBuildConfiguration": "automatic"
 }

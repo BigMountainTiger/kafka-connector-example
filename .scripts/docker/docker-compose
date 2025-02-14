@@ -1,27 +1,34 @@
 #!/bin/bash
 
-cd .scripts/docker/
+SCRIPT_PATH="$(dirname -- "${BASH_SOURCE[0]}")"
+cd $SCRIPT_PATH
 
 red() {
     echo '\033[1;31m'$1'\033[0m'
 }
 
+export CONFLUENTINC_TAG="7.8.1"
+
 WHAT=$1
 case "$WHAT" in
-    pull|p)
-        docker compose pull
-        ;;
-    up|u)
-        docker compose up -d
-        ;;
-    down|d)
-        docker compose down
-        ;;
-    *)
-        echo -e "Only the following operations are supported:\n"
-        echo -e "docker-compose [$(red p)]ull"
-        echo -e "docker-compose [$(red u)]p"
-        echo -e "docker-compose [$(red d)]own"
-        exit 1
-        ;;
+pull | p)
+    docker compose pull
+    ;;
+up | u)
+    docker compose up -d
+    ;;
+down | d)
+    docker compose down
+    ;;
+restart | r)
+    docker compose restart $2
+    ;;
+*)
+    echo -e "Only the following operations are supported:\n"
+    echo -e "docker-compose $(red p)|pull"
+    echo -e "docker-compose $(red u)|up"
+    echo -e "docker-compose $(red d)|down"
+    echo -e "docker-compose $(red r)|restart container-name"
+    exit 1
+    ;;
 esac

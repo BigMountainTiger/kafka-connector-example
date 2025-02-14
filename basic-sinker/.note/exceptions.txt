@@ -1,0 +1,9 @@
+In Tasks
+
+If the exception is not recoverable (org.apache.kafka.connect.errors.RetriableException),
+the task will stop
+
+1. Exception in put() => flush() is still called => Will this commit the offset?
+    - Need to make sure the offset is not committed if exception in put()
+
+2. Exception in flush() => stop()
