@@ -1,11 +1,13 @@
 services:
   zookeeper:
     image: confluentinc/cp-zookeeper:${CONFLUENTINC_TAG}
+    container_name: zookeeper
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
 
   kafka:
     image: confluentinc/cp-enterprise-kafka:${CONFLUENTINC_TAG}
+    container_name: kafka
     depends_on: [zookeeper]
     environment:
       KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
@@ -52,6 +54,7 @@ services:
 
   schema-registry:
     image: confluentinc/cp-schema-registry:${CONFLUENTINC_TAG}
+    container_name: schema-registry
     environment:
       # We may not need zookeeper, it is used to lookup for the bootstrap servers
       # - SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL=zookeeper:2181
@@ -88,6 +91,7 @@ services:
   # https://hub.docker.com/r/debezium/postgres
   postgres:
     image: debezium/postgres:14
+    container_name: postgres-debezium
     ports:
       - 5432:5432
     environment:

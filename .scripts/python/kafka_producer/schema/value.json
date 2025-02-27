@@ -1,0 +1,31 @@
+{
+    "type": "record",
+    "name": "test_record",
+    "namespace": "com.song.example",
+    "fields": [
+        {
+            "name": "id",
+            "type": [
+                "null",
+                "string"
+            ],
+            "default": null
+        },
+        {
+            "name": "data",
+            "type": [
+                "null",
+                "string"
+            ],
+            "default": null
+        },
+        {
+            "name": "operation",
+            "type": [
+                "null",
+                "string"
+            ],
+            "default": null
+        }
+    ]
+}

@@ -1,3 +1,4 @@
 https://github.com/confluentinc/confluent-kafka-python/blob/master/examples/avro_producer.py
 
+Tested for python3.11
 pip install confluent-kafka[avro,schemaregistry]==2.3.0
