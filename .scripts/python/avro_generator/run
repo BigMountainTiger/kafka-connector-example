@@ -4,4 +4,7 @@ SCRIPT_PATH="$(dirname -- "${BASH_SOURCE[0]}")"
 export MODEL_FILE="$SCRIPT_PATH/models/model.json"
 export SCHEMA_FILE="$SCRIPT_PATH/models/schema.avsc"
 
+export RECORD_NAME="Record"
+export NAMESPACE="com.song.example"
+
 python "$SCRIPT_PATH/generate.py"

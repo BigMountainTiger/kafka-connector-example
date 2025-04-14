@@ -7,6 +7,15 @@
         "street": "123 Main St",
         "zip_code": "10001"
     },
+    "items": {
+        "": 1.0
+    },
+    "statistics": {
+        "": {
+            "name": "",
+            "value": 0
+        }
+    },
     "phone_numbers": [
         "123-456-7890",
         "987-654-3210"

@@ -21,17 +21,17 @@ def generate_avro_schema(json_data, record_name="", namespace=""):
         key_capitalized = key.capitalize()
         field_schema = {"name": key}
 
-        if isinstance(value, str):
-            field_schema["type"] = ["null", "string"]
-            field_schema["default"] = None
-        elif isinstance(value, bool):
+        if isinstance(value, bool):
             field_schema["type"] = ["null", "boolean"]
+            field_schema["default"] = None
+        elif isinstance(value, float):
+            field_schema["type"] = ["null", "double"]
             field_schema["default"] = None
         elif isinstance(value, int):
             field_schema["type"] = ["null", "int"]
             field_schema["default"] = None
-        elif isinstance(value, float):
-            field_schema["type"] = ["null", "double"]
+        elif isinstance(value, str):
+            field_schema["type"] = ["null", "string"]
             field_schema["default"] = None
         elif isinstance(value, list):
             if value and all(isinstance(item, type(value[0])) for item in value):
@@ -41,8 +41,15 @@ def generate_avro_schema(json_data, record_name="", namespace=""):
 
             field_schema["default"] = []
         elif isinstance(value, dict):
-            # Make the default for an object to {} instead of null
-            field_schema["type"] = generate_avro_schema(value, record_name=key_capitalized, namespace=f'{namespace}.{key}')
+            dict_keys = list(value.keys())
+            if len(dict_keys) == 1 and dict_keys[0].strip() == '':
+                # A map type
+                field_schema["type"] = {"type": "map", "values": type_to_avro(value[''], record_name=key_capitalized, namespace=f'{namespace}.{key}')}
+            else:
+                if any(k.strip() == '' for k in dict_keys):
+                    raise Exception(f'Empty dictionary key in {value}')
+                field_schema["type"] = generate_avro_schema(value, record_name=key_capitalized, namespace=f'{namespace}.{key}')
+
             field_schema["default"] = {}
         elif value is None:
             field_schema["type"] = "null"
@@ -63,14 +70,14 @@ def generate_avro_schema(json_data, record_name="", namespace=""):
 
 
 def type_to_avro(value, record_name, namespace):
-    if isinstance(value, str):
-        return "string"
-    elif isinstance(value, bool):
+    if isinstance(value, bool):
         return "boolean"
-    elif isinstance(value, int):
-        return "int"
     elif isinstance(value, float):
         return "double"
+    elif isinstance(value, int):
+        return "int"
+    elif isinstance(value, str):
+        return "string"
     elif isinstance(value, dict):
         schema = generate_avro_schema(value, record_name, namespace)
         return schema
